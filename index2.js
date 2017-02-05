@@ -10,34 +10,61 @@
 
  */
 
+// =======================================================================================================
+// ================= The LOGIC ===========================================================================
+// =======================================================================================================
 
-// random coordinate. The machine will guess where xy belongs (NE or SE or NW etc.)
+
+// random coordinate. The machine will guess where xy belongs (NE or NW or SW or SE.)
 var xy = [20,60];
 
 
 //create coordinates
-var NE = [];
-var NW = [];
-var SE = [];
-var SW = [];
+var NEarray = [];
+var NWarray = [];
+var SEarray = [];
+var SWarray = [];
 
 
 //populate variables with coordinates
 for (var i = 0; i < 100000; i++){
-	NE.push([randomPosi(), randomPosi()])
-	NW.push([randomPosi(), randomNegi()])
-	SW.push([randomNegi(), randomNegi()])
-	SE.push([randomNegi(), randomPosi()])
+	NEarray.push([randomPosi(), randomPosi()])
+	NWarray.push([randomPosi(), randomNegi()])
+	SWarray.push([randomNegi(), randomNegi()])
+	SEarray.push([randomNegi(), randomPosi()])
 }
 
+
+//calculate nearest neightbor for each dataset
 var distance = {
-	NEdistance: closestDistance(NE),
-	NWdistance: closestDistance(NW),
-	SWdistance: closestDistance(SW),
-	SEdistance: closestDistance(SE)
+	NE: closestDistance(NEarray),
+	NW: closestDistance(NWarray),
+	SW: closestDistance(SWarray),
+	SE: closestDistance(SEarray)
 }
 
-console.log(distance)
+// find the shortest distance
+var computerPrediction = smallestNum(distance)
+
+console.log(computerPrediction)
+
+
+
+// =======================================================================================================
+// ================= The FUNCTIONS =======================================================================
+// =======================================================================================================
+
+
+//create random postive numbers
+function randomPosi(){
+	return Math.round(Math.random()*100)
+}
+
+//create random negative numbers
+function randomNegi(){
+	return Math.round(Math.random()* -100)
+}
+
 
 
 
@@ -56,14 +83,20 @@ function closestDistance(coordinates){
 
 
 
+//get smallest number in an object
+function smallestNum(obj){
+	var objKey;
+	var objValue;
+	for (var i in obj) {
+		if (!objKey) {
+			objKey = i;
+			objValue = obj[i];
+		}
+		if (obj[i] < objKey) {
+			objKey = i;
+			objValue = obj[i]
+	;	}
+	}
 
-
-//create random postive numbers
-function randomPosi(){
-	return Math.round(Math.random()*100)
-}
-
-//create random negative numbers
-function randomNegi(){
-	return Math.round(Math.random()* -100)
+	return objKey;
 }
