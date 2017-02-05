@@ -35,7 +35,7 @@ if (Math.abs(num-closestPosi) < Math.abs(num-closestNegi)){
 
 
 
-
+//function to find the closet number in an array
 function closestNumber(num, array){
 	var closestNum = array[0];
 	for (var i = 0; i < array.length; i++){
