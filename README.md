@@ -6,3 +6,5 @@ https://www.youtube.com/watch?v=AoeEHqVSNOw
 index1.js is one dimentional
 
 index2.js is two dimentional (x,y)
+
+index3.js uses a sql database (machineDB.sql)
