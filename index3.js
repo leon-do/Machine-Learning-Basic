@@ -2,14 +2,16 @@
 
 using a sql database to store machine learning data
 
+aaa = +++
+bbb = ---
+aba = +-+
+
 */
 
-var target =
-	{
-		1: 40,
-		2: 30,
-		3: 80,
-	} 
+var target1 = 40;
+var target2 = 30;
+var target3 = 80;
+
 
 var Sequelize = require("Sequelize")
 
@@ -26,9 +28,33 @@ var sequelize = new Sequelize('machineDB', 'root', '', {
 });
 
 
-sequelize.query("SELECT * FROM machineTable WHERE data1=33").then(function(row){
-	console.log(row)
+sequelize.query("SELECT * FROM machineTables").then(function(row){
+	loopThroughData(row[0])
 })
+
+function loopThroughData(allData){
+
+	var shortestDistance = Infinity;
+	var type;
+
+	for (var i = 0; i < allData.length; i++){
+		var data1 = allData[i].data1;
+		var data2 = allData[i].data2;
+		var data3 = allData[i].data3;
+
+		// Euclidean equation
+		var distance = Math.sqrt(Math.pow(data1-target1,2) + Math.pow(data2-target2,2) + Math.pow(data3-target3,2))
+
+		if (distance < shortestDistance){
+			shortestDistance = distance;
+			type = allData[i].type;
+		} 
+
+	}
+	console.log(shortestDistance)
+	console.log(type)
+
+}
 
 
 
