@@ -9,10 +9,10 @@ etc...
 
 */
 
+// answer should be aaa because they're all positive
 var target1 = 40;
 var target2 = 30;
 var target3 = 80;
-// answer should be aaa because they're all positive
 
 
 var Sequelize = require("Sequelize")
@@ -49,12 +49,12 @@ function loopThroughData(allData){
 
 		if (distance < shortestDistance){
 			shortestDistance = distance;
-			type = allData[i].type;
+			answer = allData[i].type;
 		} 
 
 	}
 	console.log(shortestDistance)
-	console.log(type)
+	console.log(answer)
 
 }
 
